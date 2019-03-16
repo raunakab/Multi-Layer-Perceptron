@@ -12,6 +12,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Main {
+    /** FIELDS:-------------------------------------------------------------------------------------------------------*/
+
+
+
+
+
+
     /** METHODS:------------------------------------------------------------------------------------------------------*/
     /**
      * Main:
@@ -28,7 +35,8 @@ public class Main {
      */
     public static void main(String[] args) {
         try {
-            new NeuralNetwork(2, 10, 1, new int[] {1,4});
+            NeuralNetwork neuralNetwork = new NeuralNetwork(new int[] {1,4}, "src/inputVectors.txt", "src/expectedOutputVectors.txt");
+            neuralNetwork.runAndTrain(10,0.1);
         } catch (Exception e) {
             System.out.println("Exception at main(String[])");
             e.printStackTrace();
@@ -90,20 +98,7 @@ class NeuralNetwork {
     private int depth;
     private HiddenLayer[] layers;
     private InputLayer inputLayer;
-    private int outputDimensionality;
-    /**
-     * Training Parameters:
-     */
-    private int iterations;
-    private int learningRate;
-    /**
-     * Respective paths for external files:
-     * Sources for:
-     *      - Input Vector File
-     *      - Expected Output Vector File
-     */
-    private final String inputVectorsFile = "src/inputVectors.txt";
-    private final String expectedOutputVectorsFile = "src/expectedOutputVectors.txt";
+    private int[] respectiveColumnDimensionalities;
     /**
      * Fields for:
      *      - Input Vectors
@@ -122,46 +117,28 @@ class NeuralNetwork {
     /** METHODS:------------------------------------------------------------------------------------------------------*/
     /**
      * Neural Network Constructor:
-     * @param depth The depth (number of layers) in the neural network.
-     * @param iterations The number of times the Neural Network tests and trains to minimize loss.
-     * @param learningRate The speed of Stochastic Descent.
      * @param respectiveColumnDimensionalities The number of Neurons in each layer.
      * @throws Exception
      *
      * Constructs a new Neural Network structure with the given parameters, tests and then trains it.
      */
-    public NeuralNetwork(int depth, int iterations, int learningRate, int[] respectiveColumnDimensionalities) throws Exception {
+    public NeuralNetwork(int[] respectiveColumnDimensionalities, String ipSource, String opSource) throws Exception {
         try {
-            if (depth != respectiveColumnDimensionalities.length) throw new Exception();
-            this.depth = depth;
-            this.iterations = iterations;
-            this.learningRate = learningRate;
-            outputDimensionality = respectiveColumnDimensionalities[0];
+            this.depth = respectiveColumnDimensionalities.length;
+            this.respectiveColumnDimensionalities = respectiveColumnDimensionalities;
 
-            inputVectors = importInputVectorsFromMemory(inputVectorsFile);
-            expectedOutputVectors = importExpectedOutputVectorsFromMemory(expectedOutputVectorsFile);
-            buildNeuralNetwork(respectiveColumnDimensionalities);
-
-            classificationVectors = new LinkedList<>();
-
-            for (int i=0; i<inputVectors.size(); i++) {
-                inputLayer.setOutputVector(inputVectors.get(i));
-                test();
-            }
-
-            for (int i=0; i<classificationVectors.size(); i++) {
-                System.out.println("Vector "+i+": ");
-                for (double element : classificationVectors.get(i)) {
-                    System.out.println(element);
-                }
-            }
+            inputVectors = importInputVectorsFromMemory(ipSource);
+            expectedOutputVectors = importExpectedOutputVectorsFromMemory(opSource);
+            build(respectiveColumnDimensionalities);
         } catch (IOException ioe) {
             System.out.println("IOException at NeuralNetwork(int, int, int, int[])");
             ioe.printStackTrace();
-        } catch (InvalidDotProductException idpe) {
-            System.out.println("InvalidDotProductException at NeuralNetwork(int, int, int, int[])");
-            idpe.printStackTrace();
-        } catch (NumberFormatException nfe) {
+        }
+//        catch (InvalidDotProductException idpe) {
+//            System.out.println("InvalidDotProductException at NeuralNetwork(int, int, int, int[])");
+//            idpe.printStackTrace();
+//        }
+        catch (NumberFormatException nfe) {
             System.out.println("NumberFormatException at NeuralNetwork(int, int, int, int[])");
             nfe.printStackTrace();
         }
@@ -178,7 +155,7 @@ class NeuralNetwork {
      * layer]). Sets up each Hidden Layer to point to the previous layer. A pointer to the last Hidden Layer is
      * returned.
      */
-    private void buildNeuralNetwork(int[] respectiveLayerColumnDimensionalities) {
+    private void build(int[] respectiveLayerColumnDimensionalities) {
         layers = new HiddenLayer[depth];
         for (int i=0; i<depth; i++) {
             HiddenLayer hiddenLayer = new HiddenLayer(respectiveLayerColumnDimensionalities[i]);
@@ -283,14 +260,76 @@ class NeuralNetwork {
      * Test Method:
      * @throws InvalidDotProductException
      *
-     *
+     * Finds the output of the Neural Network for the given Input Layer's output vector, copies it into a destination,
+     * and adds the result to the classificationVectors list.
      */
-    public void test() throws InvalidDotProductException {
+    private void test() throws InvalidDotProductException {
         double[] result = layers[0].getOutputVector();
-        double[] destination = new double[outputDimensionality];
-        for (int i=0; i<outputDimensionality; i++) {
+        double[] destination = new double[respectiveColumnDimensionalities[0]];
+        for (int i=0; i<respectiveColumnDimensionalities[0]; i++) {
             destination[i] = result[i];
         }
         classificationVectors.add(destination);
+    }
+
+    /**
+     * Run Method:
+     * @throws InvalidDotProductException If the Test Method (a method called from within this) throws it.
+     *
+     * For each vector in the inputVectors list, InputLayer is modified to output the selected vector. The Test Method
+     * is then called on the (same) neural network (but with a different inputLayer output vector). The results are
+     * stored in classificationVectors. After each iteration, each vector in classificationVectors is subtracted from
+     * the corresponding vector (at the same index) in the expectedOutputVectors list. The difference is squared and
+     * summed over the entire list.
+     */
+    private void run() throws Exception {
+        int n = weightCount();
+        classificationVectors = new LinkedList<>();
+        for (double[] inputVector : inputVectors) {
+            inputLayer.setOutputVector(inputVector);
+            test();
+        }
+        if (classificationVectors.size() != expectedOutputVectors.size()) throw new Exception();
+        double size = classificationVectors.get(0).length;
+        double error = 0;
+        for (int i=0; i<classificationVectors.size(); i++) {
+            double[] vectorACT = classificationVectors.get(i);
+            double[] vectorEXP = expectedOutputVectors.get(i);
+            if (vectorACT.length!=size || vectorEXP.length!=size) throw new Exception();
+            for (int j=0; j<vectorACT.length; j++) {
+                error += (vectorACT[j]-vectorEXP[j])*(vectorACT[j]-vectorEXP[j]);
+            }
+        }
+        error = error/(2*n);
+        System.out.println(error);
+    }
+
+    /**
+     * Run and Train Method:
+     * @param iterations The number of times the Neural Network tests and trains to minimize loss.
+     * @param learningRate The speed of Stochastic Descent.
+     * @throws Exception
+     *
+     * Runs and then trains the Neural Network a number of times according to iterations. The Stochastic Descent
+     * (training) of the Neural Network is processed at the learning rate.
+     */
+    public void runAndTrain(int iterations, double learningRate) throws Exception {
+        for (int i=0; i<iterations; i++) {
+            run();
+        }
+    }
+
+    /**
+     * Weight Count Method:
+     * @return The number of weights in the Neural Network
+     *
+     * Calculates the number of weights in the Neural Network and returns the value.
+     */
+    private int weightCount() {
+        int sum = 0;
+        for (int i=0; i<respectiveColumnDimensionalities.length-1; i++) {
+            sum += respectiveColumnDimensionalities[i]*respectiveColumnDimensionalities[i+1];
+        }
+        return sum;
     }
 }
