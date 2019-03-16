@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="db8787ed-54c0-415f-8072-823cb9517a7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/expectedOutputVectors.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/expectedOutputVectors.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -84,14 +82,19 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="6" />
-          <entry key="txt" value="2" />
+          <entry key="java" value="30" />
+          <entry key="txt" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="6" />
-          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="JAVA" value="30" />
+          <entry key="PLAIN_TEXT" value="8" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages">
+        <counts>
+          <entry key="git.branch.checkout.local" value="4" />
         </counts>
       </usages-collector>
     </session>
@@ -105,14 +108,11 @@
               <caret line="335" lean-forward="true" selection-start-line="335" selection-end-line="335" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1278#1293#0" />
                 <element signature="docComment;field#depth#0;class#NeuralNetwork#0" />
                 <element signature="docComment;field#inputVectors#0;class#NeuralNetwork#0" />
                 <element signature="method#build#0;class#NeuralNetwork#0" />
                 <element signature="method#importInputVectorsFromMemory#0;class#NeuralNetwork#0" />
-                <element signature="e#9299#9319#0" />
                 <element signature="method#importExpectedOutputVectorsFromMemory#0;class#NeuralNetwork#0" />
-                <element signature="e#10996#11016#0" />
                 <element signature="method#test#0;class#NeuralNetwork#0" />
                 <element signature="method#weightCount#0;class#NeuralNetwork#0" />
               </folding>
@@ -228,7 +228,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tests/NeuronTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
+            <state relative-caret-position="117">
               <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -263,6 +263,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -453,8 +458,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.NeuronTest" />
         <item itemvalue="JUnit.NeuronTest.testSetWeight" />
+        <item itemvalue="JUnit.NeuronTest" />
         <item itemvalue="JUnit.NeuronTest.testInstantiation" />
         <item itemvalue="JUnit.NeuronTest.testComputeNeuronResult" />
       </list>
@@ -571,6 +576,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="335" lean-forward="true" selection-start-line="335" selection-end-line="335" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;field#depth#0;class#NeuralNetwork#0" />
+            <element signature="docComment;field#inputVectors#0;class#NeuralNetwork#0" />
+            <element signature="method#build#0;class#NeuralNetwork#0" />
+            <element signature="method#importInputVectorsFromMemory#0;class#NeuralNetwork#0" />
+            <element signature="method#importExpectedOutputVectorsFromMemory#0;class#NeuralNetwork#0" />
+            <element signature="method#test#0;class#NeuralNetwork#0" />
+            <element signature="method#weightCount#0;class#NeuralNetwork#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/exceptions/InvalidDotProductException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="52">
@@ -578,54 +600,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/LayerTest.java">
+    <entry file="file://$PROJECT_DIR$/src/inputVectors.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/NeuronTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#runBefore#0;class#NeuronTest#0" />
-            <element signature="method#runBefore#0;class#NeuronTest#0" />
-            <element signature="method#testInstantiation#0;class#NeuronTest#0" />
-            <element signature="docComment;method#testSetWeight#0;class#NeuronTest#0" />
-            <element signature="method#testSetWeight#0;class#NeuronTest#0" />
-            <element signature="docComment;method#testSetWeights#0;class#NeuronTest#0" />
-            <element signature="method#testSetWeights#0;class#NeuronTest#0" />
-            <element signature="docComment;method#testSetBias#0;class#NeuronTest#0" />
-            <element signature="method#testSetBias#0;class#NeuronTest#0" />
-            <element signature="docComment;method#testSetDimensionality#0;class#NeuronTest#0" />
-            <element signature="method#testSetDimensionality#0;class#NeuronTest#0" />
-            <element signature="docComment;method#testComputeDotProduct#0;class#NeuronTest#0" />
-            <element signature="method#testComputeDotProduct#0;class#NeuronTest#0" />
-            <element signature="docComment;method#testComputeNeuronResult#0;class#NeuronTest#0" />
-            <element signature="method#testComputeNeuronResult#0;class#NeuronTest#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/structures/HiddenLayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="55" column="5" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
-          <folding>
-            <element signature="method#HiddenLayer#0;class#HiddenLayer#0" />
-            <element signature="method#computeTransformation#0;class#HiddenLayer#0" />
-            <element signature="docComment;method#getNeurons#0;class#HiddenLayer#0" />
-            <element signature="docComment;method#getRowDimensionality#0;class#HiddenLayer#0" />
-            <element signature="docComment;method#getPrevLayer#0;class#HiddenLayer#0" />
-            <element signature="docComment;method#getPrevLayerOutputVector#0;class#HiddenLayer#0" />
-            <element signature="docComment;method#getOutputVector#0;class#HiddenLayer#0" />
-            <element signature="method#getOutputVector#0;class#HiddenLayer#0" />
-            <element signature="docComment;method#setPrevLayer#0;class#HiddenLayer#0" />
-            <element signature="method#setPrevLayer#0;class#HiddenLayer#0" />
-          </folding>
+        <state relative-caret-position="91">
+          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -639,14 +617,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/structures/Layer.java">
+    <entry file="file://$PROJECT_DIR$/src/expectedOutputVectors.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-          <folding>
-            <element signature="docComment;method#getOutputVector#0;class#Layer#0" />
-            <element signature="docComment;method#getColumnDimensionality#0;class#Layer#0" />
-          </folding>
+        <state relative-caret-position="91">
+          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -671,36 +645,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inputVectors.txt">
+    <entry file="file://$PROJECT_DIR$/src/tests/LayerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+        <state relative-caret-position="26">
+          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/expectedOutputVectors.txt">
+    <entry file="file://$PROJECT_DIR$/src/structures/Layer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        <state relative-caret-position="52">
+          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+          <folding>
+            <element signature="docComment;method#getOutputVector#0;class#Layer#0" />
+            <element signature="docComment;method#getColumnDimensionality#0;class#Layer#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/structures/HiddenLayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="335" lean-forward="true" selection-start-line="335" selection-end-line="335" />
+        <state relative-caret-position="507">
+          <caret line="55" column="5" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
+          <folding>
+            <element signature="method#HiddenLayer#0;class#HiddenLayer#0" />
+            <element signature="method#computeTransformation#0;class#HiddenLayer#0" />
+            <element signature="docComment;method#getNeurons#0;class#HiddenLayer#0" />
+            <element signature="docComment;method#getRowDimensionality#0;class#HiddenLayer#0" />
+            <element signature="docComment;method#getPrevLayer#0;class#HiddenLayer#0" />
+            <element signature="docComment;method#getPrevLayerOutputVector#0;class#HiddenLayer#0" />
+            <element signature="docComment;method#getOutputVector#0;class#HiddenLayer#0" />
+            <element signature="method#getOutputVector#0;class#HiddenLayer#0" />
+            <element signature="docComment;method#setPrevLayer#0;class#HiddenLayer#0" />
+            <element signature="method#setPrevLayer#0;class#HiddenLayer#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tests/NeuronTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1278#1293#0" />
-            <element signature="docComment;field#depth#0;class#NeuralNetwork#0" />
-            <element signature="docComment;field#inputVectors#0;class#NeuralNetwork#0" />
-            <element signature="method#build#0;class#NeuralNetwork#0" />
-            <element signature="method#importInputVectorsFromMemory#0;class#NeuralNetwork#0" />
-            <element signature="e#9299#9319#0" />
-            <element signature="method#importExpectedOutputVectorsFromMemory#0;class#NeuralNetwork#0" />
-            <element signature="e#10996#11016#0" />
-            <element signature="method#test#0;class#NeuralNetwork#0" />
-            <element signature="method#weightCount#0;class#NeuralNetwork#0" />
+            <element signature="docComment;method#runBefore#0;class#NeuronTest#0" />
+            <element signature="method#runBefore#0;class#NeuronTest#0" />
+            <element signature="method#testInstantiation#0;class#NeuronTest#0" />
+            <element signature="docComment;method#testSetWeight#0;class#NeuronTest#0" />
+            <element signature="method#testSetWeight#0;class#NeuronTest#0" />
+            <element signature="docComment;method#testSetWeights#0;class#NeuronTest#0" />
+            <element signature="method#testSetWeights#0;class#NeuronTest#0" />
+            <element signature="docComment;method#testSetBias#0;class#NeuronTest#0" />
+            <element signature="method#testSetBias#0;class#NeuronTest#0" />
+            <element signature="docComment;method#testSetDimensionality#0;class#NeuronTest#0" />
+            <element signature="method#testSetDimensionality#0;class#NeuronTest#0" />
+            <element signature="docComment;method#testComputeDotProduct#0;class#NeuronTest#0" />
+            <element signature="method#testComputeDotProduct#0;class#NeuronTest#0" />
+            <element signature="docComment;method#testComputeNeuronResult#0;class#NeuronTest#0" />
+            <element signature="method#testComputeNeuronResult#0;class#NeuronTest#0" />
           </folding>
         </state>
       </provider>
