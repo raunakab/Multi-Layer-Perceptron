@@ -126,19 +126,13 @@ class NeuralNetwork {
         try {
             this.depth = respectiveColumnDimensionalities.length;
             this.respectiveColumnDimensionalities = respectiveColumnDimensionalities;
-
             inputVectors = importInputVectorsFromMemory(ipSource);
             expectedOutputVectors = importExpectedOutputVectorsFromMemory(opSource);
             build(respectiveColumnDimensionalities);
         } catch (IOException ioe) {
             System.out.println("IOException at NeuralNetwork(int, int, int, int[])");
             ioe.printStackTrace();
-        }
-//        catch (InvalidDotProductException idpe) {
-//            System.out.println("InvalidDotProductException at NeuralNetwork(int, int, int, int[])");
-//            idpe.printStackTrace();
-//        }
-        catch (NumberFormatException nfe) {
+        } catch (NumberFormatException nfe) {
             System.out.println("NumberFormatException at NeuralNetwork(int, int, int, int[])");
             nfe.printStackTrace();
         }
@@ -282,7 +276,7 @@ class NeuralNetwork {
      * the corresponding vector (at the same index) in the expectedOutputVectors list. The difference is squared and
      * summed over the entire list.
      */
-    private void run() throws Exception {
+    private double run() throws Exception {
         int n = weightCount();
         classificationVectors = new LinkedList<>();
         for (double[] inputVector : inputVectors) {
@@ -302,6 +296,7 @@ class NeuralNetwork {
         }
         error = error/(2*n);
         System.out.println(error);
+        return error;
     }
 
     /**
@@ -315,7 +310,7 @@ class NeuralNetwork {
      */
     public void runAndTrain(int iterations, double learningRate) throws Exception {
         for (int i=0; i<iterations; i++) {
-            run();
+            double error = run();
         }
     }
 
@@ -328,7 +323,7 @@ class NeuralNetwork {
     private int weightCount() {
         int sum = 0;
         for (int i=0; i<respectiveColumnDimensionalities.length-1; i++) {
-            sum += respectiveColumnDimensionalities[i]*respectiveColumnDimensionalities[i+1];
+            sum += respectiveColumnDimensionalities[i]*respectiveColumnDimensionalities[i+1]+respectiveColumnDimensionalities[i+1];
         }
         return sum;
     }
