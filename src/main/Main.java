@@ -3,6 +3,7 @@ package main;
 import exceptions.InvalidDotProductException;
 import structures.HiddenLayer;
 import structures.InputLayer;
+import structures.Neuron;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -12,16 +13,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Main {
-    /** FIELDS:-------------------------------------------------------------------------------------------------------*/
-
-
-
-
-
-
     /** METHODS:------------------------------------------------------------------------------------------------------*/
     /**
-     * Main:
+     * Main Method:
      * @param args
      *
      * Instantiates the build of the Neural Network by:
@@ -36,57 +30,11 @@ public class Main {
     public static void main(String[] args) {
         try {
             NeuralNetwork neuralNetwork = new NeuralNetwork(new int[] {1,4}, "src/inputVectors.txt", "src/expectedOutputVectors.txt");
-            neuralNetwork.runAndTrain(10,0.1);
+            neuralNetwork.runAndLearn(10,0.1);
         } catch (Exception e) {
             System.out.println("Exception at main(String[])");
             e.printStackTrace();
         }
-        //        try {
-//            inputVectors = importInputVectorsFromMemory(inputVectorsFile);
-//            expectedOutputVectors = importExpectedOutputVectorsFromMemory(expectedOutputVectorsFile);
-//            setProperties(2, 10, 1);
-//            HiddenLayer pointer = buildNeuralNetwork(new int[] {1, 2});
-//
-//            EXECUTE2 EXECUTE2 = new EXECUTE2(pointer, inputVectors, expectedOutputVectors);
-//
-//            InputLayer inputLayer = new InputLayer();
-//            inputLayer.setOutputVector(new double[] {9,9,9});
-//            pointer.setPrevLayer(inputLayer);
-//
-//            for (double[] inputVector : inputVectors) {
-//                inputLayer.setOutputVector(inputVector);
-//                EXECUTE2();
-//                predictedOutputVectors.add(i);
-//                for (double[] vector : predictedOutputVectors) {
-//                    for (double element : vector) {
-//                        System.out.println(element);
-//                    }
-//                }
-//            }
-//
-//            for (double[] inputVector : inputVectors) {
-//                inputLayer.setOutputVector(inputVector);
-//                EXECUTE2();
-//                System.out.println(predictedOutputVectors.size());
-//            }
-//            int j = 0;
-//            for (double[] prediction : predictedOutputVectors) {
-//                System.out.println("Prediction "+j+": ");
-//                j++;
-//                for (double elt : prediction) {
-//                    System.out.println(elt);
-//                }
-//            }
-//        } catch (InvalidDotProductException idpe) {
-//            System.out.println("InvalidDotProductException at main(String[])");
-//            idpe.printStackTrace();
-//        } catch (NumberFormatException nfe) {
-//            System.out.println("NumberFormatException at main(String[])");
-//            nfe.printStackTrace();
-//        } catch (IOException ioe) {
-//            System.out.println("IOException at main(String[])");
-//            ioe.printStackTrace();
-//        }
     }
 }
 
@@ -122,20 +70,12 @@ class NeuralNetwork {
      *
      * Constructs a new Neural Network structure with the given parameters, tests and then trains it.
      */
-    public NeuralNetwork(int[] respectiveColumnDimensionalities, String ipSource, String opSource) throws Exception {
-        try {
-            this.depth = respectiveColumnDimensionalities.length;
-            this.respectiveColumnDimensionalities = respectiveColumnDimensionalities;
-            inputVectors = importInputVectorsFromMemory(ipSource);
-            expectedOutputVectors = importExpectedOutputVectorsFromMemory(opSource);
-            build(respectiveColumnDimensionalities);
-        } catch (IOException ioe) {
-            System.out.println("IOException at NeuralNetwork(int, int, int, int[])");
-            ioe.printStackTrace();
-        } catch (NumberFormatException nfe) {
-            System.out.println("NumberFormatException at NeuralNetwork(int, int, int, int[])");
-            nfe.printStackTrace();
-        }
+    public NeuralNetwork(int[] respectiveColumnDimensionalities, String ipSource, String opSource) throws NumberFormatException, IOException {
+        this.depth = respectiveColumnDimensionalities.length;
+        this.respectiveColumnDimensionalities = respectiveColumnDimensionalities;
+        inputVectors = importInputVectorsFromMemory(ipSource);
+        expectedOutputVectors = importExpectedOutputVectorsFromMemory(opSource);
+        build(respectiveColumnDimensionalities);
     }
 
     /**
@@ -257,12 +197,10 @@ class NeuralNetwork {
      * Finds the output of the Neural Network for the given Input Layer's output vector, copies it into a destination,
      * and adds the result to the classificationVectors list.
      */
-    private void test() throws InvalidDotProductException {
-        double[] result = layers[0].getOutputVector();
+    private void propagate() throws InvalidDotProductException {
         double[] destination = new double[respectiveColumnDimensionalities[0]];
-        for (int i=0; i<respectiveColumnDimensionalities[0]; i++) {
-            destination[i] = result[i];
-        }
+        double[] result = layers[0].getOutputVector();
+        for (int i=0; i<respectiveColumnDimensionalities[0]; i++) destination[i] = result[i];
         classificationVectors.add(destination);
     }
 
@@ -281,7 +219,7 @@ class NeuralNetwork {
         classificationVectors = new LinkedList<>();
         for (double[] inputVector : inputVectors) {
             inputLayer.setOutputVector(inputVector);
-            test();
+            propagate();
         }
         if (classificationVectors.size() != expectedOutputVectors.size()) throw new Exception();
         double size = classificationVectors.get(0).length;
@@ -294,23 +232,35 @@ class NeuralNetwork {
                 error += (vectorACT[j]-vectorEXP[j])*(vectorACT[j]-vectorEXP[j]);
             }
         }
-        error = error/(2*n);
+        error = error/2;
         System.out.println(error);
         return error;
     }
 
+    private void learn(double learningRate) {
+        Neuron[] neurons = layers[0].getNeurons();
+        int i = 0;
+        for (Neuron neuron : neurons) {
+            neuron.setWeight(i, neuron.getWeights()[i]-learningRate);
+        }
+    }
+
     /**
      * Run and Train Method:
-     * @param iterations The number of times the Neural Network tests and trains to minimize loss.
+     * @param epochs The number of times the Neural Network tests and trains to minimize loss.
      * @param learningRate The speed of Stochastic Descent.
      * @throws Exception
      *
-     * Runs and then trains the Neural Network a number of times according to iterations. The Stochastic Descent
+     * Runs and then trains the Neural Network a number of times according to epochs. The Stochastic Descent
      * (training) of the Neural Network is processed at the learning rate.
      */
-    public void runAndTrain(int iterations, double learningRate) throws Exception {
-        for (int i=0; i<iterations; i++) {
+    public void runAndLearn(int epochs, double learningRate) throws Exception {
+        double previousError = 0;
+        for (int i=0; i<epochs; i++) {
             double error = run();
+            learn(learningRate);
+            System.out.println("Error Drop: " + (error - previousError));
+            previousError = error;
         }
     }
 
@@ -322,9 +272,7 @@ class NeuralNetwork {
      */
     private int weightCount() {
         int sum = 0;
-        for (int i=0; i<respectiveColumnDimensionalities.length-1; i++) {
-            sum += respectiveColumnDimensionalities[i]*respectiveColumnDimensionalities[i+1]+respectiveColumnDimensionalities[i+1];
-        }
+        for (int i=0; i<respectiveColumnDimensionalities.length-1; i++) sum += respectiveColumnDimensionalities[i]*respectiveColumnDimensionalities[i+1]+respectiveColumnDimensionalities[i+1];
         return sum;
     }
 }

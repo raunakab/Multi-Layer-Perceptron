@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db8787ed-54c0-415f-8072-823cb9517a7f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/raunakbhagat.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/raunakbhagat.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DeepLearningProject/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DeepLearningProject/main/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DeepLearningProject/main/NeuralNetwork.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DeepLearningProject/main/NeuralNetwork.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
     </list>
@@ -60,26 +62,26 @@
     <session id="1650144514">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="9" />
           <entry key="project.open.time.10" value="2" />
-          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.44" value="1" />
-          <entry key="project.open.time.8" value="2" />
+          <entry key="project.open.time.8" value="3" />
           <entry key="project.open.time.9" value="3" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="23" />
-          <entry key="java" value="27281" />
+          <entry key="java" value="28420" />
           <entry key="txt" value="52" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="27281" />
+          <entry key="JAVA" value="28420" />
           <entry key="PLAIN_TEXT" value="75" />
         </counts>
       </usages-collector>
@@ -107,16 +109,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3029">
-              <caret line="330" selection-start-line="330" selection-end-line="330" />
+            <state relative-caret-position="290">
+              <caret line="218" column="30" lean-forward="true" selection-start-line="218" selection-start-column="30" selection-end-line="218" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;field#depth#0;class#NeuralNetwork#0" />
                 <element signature="docComment;field#inputVectors#0;class#NeuralNetwork#0" />
+                <element signature="method#NeuralNetwork#0;class#NeuralNetwork#0" />
                 <element signature="method#build#0;class#NeuralNetwork#0" />
                 <element signature="method#importInputVectorsFromMemory#0;class#NeuralNetwork#0" />
                 <element signature="method#importExpectedOutputVectorsFromMemory#0;class#NeuralNetwork#0" />
-                <element signature="method#test#0;class#NeuralNetwork#0" />
+                <element signature="method#propagate#0;class#NeuralNetwork#0" />
                 <element signature="method#weightCount#0;class#NeuralNetwork#0" />
               </folding>
             </state>
@@ -231,8 +234,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tests/NeuronTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+            <state relative-caret-position="333">
+              <caret line="79" column="9" lean-forward="true" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;method#runBefore#0;class#NeuronTest#0" />
@@ -295,10 +298,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="189" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="150" />
     <option name="y" value="23" />
-    <option name="width" value="1396" />
+    <option name="width" value="1186" />
     <option name="height" value="1027" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -307,6 +310,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -349,7 +353,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -461,8 +464,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.NeuronTest.testSetWeight" />
         <item itemvalue="JUnit.NeuronTest" />
+        <item itemvalue="JUnit.NeuronTest.testSetWeight" />
         <item itemvalue="JUnit.NeuronTest.testInstantiation" />
         <item itemvalue="JUnit.NeuronTest.testComputeNeuronResult" />
       </list>
@@ -487,9 +490,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="NeuronTest_testComputeNeuronResult - 2019.03.09 at 16h 32m 47s.xml">
-      <configuration name="NeuronTest.testComputeNeuronResult" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="NeuronTest_testComputeNeuronResult - 2019.03.09 at 16h 33m 39s.xml">
       <configuration name="NeuronTest.testComputeNeuronResult" configurationId="JUnit" />
     </history-entry>
@@ -517,6 +517,9 @@
     <history-entry file="NeuronTest - 2019.03.09 at 18h 14m 12s.xml">
       <configuration name="NeuronTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="NeuronTest - 2019.04.29 at 08h 11m 42s.xml">
+      <configuration name="NeuronTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -528,23 +531,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="284" y="23" width="1396" height="1027" extended-state="0" />
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11636364" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09644364" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3291536" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4996986" visible="true" weight="0.2642544" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49894738" visible="true" weight="0.2633229" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3291536" />
       <window_info anchor="bottom" id="Problems" order="7" weight="0.3291536" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.50030136" side_tool="true" weight="0.27272728" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.5010526" side_tool="true" weight="0.25182864" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50030136" side_tool="true" weight="0.3291536" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3291536" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -577,23 +580,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2782">
           <caret line="237" column="12" selection-start-line="237" selection-start-column="12" selection-end-line="237" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3029">
-          <caret line="330" selection-start-line="330" selection-end-line="330" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;field#depth#0;class#NeuralNetwork#0" />
-            <element signature="docComment;field#inputVectors#0;class#NeuralNetwork#0" />
-            <element signature="method#build#0;class#NeuralNetwork#0" />
-            <element signature="method#importInputVectorsFromMemory#0;class#NeuralNetwork#0" />
-            <element signature="method#importExpectedOutputVectorsFromMemory#0;class#NeuralNetwork#0" />
-            <element signature="method#test#0;class#NeuralNetwork#0" />
-            <element signature="method#weightCount#0;class#NeuralNetwork#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -667,6 +653,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/tests/NeuronTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="79" column="9" lean-forward="true" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#runBefore#0;class#NeuronTest#0" />
+            <element signature="method#runBefore#0;class#NeuronTest#0" />
+            <element signature="method#testInstantiation#0;class#NeuronTest#0" />
+            <element signature="docComment;method#testSetWeight#0;class#NeuronTest#0" />
+            <element signature="method#testSetWeight#0;class#NeuronTest#0" />
+            <element signature="docComment;method#testSetWeights#0;class#NeuronTest#0" />
+            <element signature="method#testSetWeights#0;class#NeuronTest#0" />
+            <element signature="docComment;method#testSetBias#0;class#NeuronTest#0" />
+            <element signature="method#testSetBias#0;class#NeuronTest#0" />
+            <element signature="docComment;method#testSetDimensionality#0;class#NeuronTest#0" />
+            <element signature="method#testSetDimensionality#0;class#NeuronTest#0" />
+            <element signature="docComment;method#testComputeDotProduct#0;class#NeuronTest#0" />
+            <element signature="method#testComputeDotProduct#0;class#NeuronTest#0" />
+            <element signature="docComment;method#testComputeNeuronResult#0;class#NeuronTest#0" />
+            <element signature="method#testComputeNeuronResult#0;class#NeuronTest#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/structures/HiddenLayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="507">
@@ -686,27 +697,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/NeuronTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        <state relative-caret-position="290">
+          <caret line="218" column="30" lean-forward="true" selection-start-line="218" selection-start-column="30" selection-end-line="218" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="docComment;method#runBefore#0;class#NeuronTest#0" />
-            <element signature="method#runBefore#0;class#NeuronTest#0" />
-            <element signature="method#testInstantiation#0;class#NeuronTest#0" />
-            <element signature="docComment;method#testSetWeight#0;class#NeuronTest#0" />
-            <element signature="method#testSetWeight#0;class#NeuronTest#0" />
-            <element signature="docComment;method#testSetWeights#0;class#NeuronTest#0" />
-            <element signature="method#testSetWeights#0;class#NeuronTest#0" />
-            <element signature="docComment;method#testSetBias#0;class#NeuronTest#0" />
-            <element signature="method#testSetBias#0;class#NeuronTest#0" />
-            <element signature="docComment;method#testSetDimensionality#0;class#NeuronTest#0" />
-            <element signature="method#testSetDimensionality#0;class#NeuronTest#0" />
-            <element signature="docComment;method#testComputeDotProduct#0;class#NeuronTest#0" />
-            <element signature="method#testComputeDotProduct#0;class#NeuronTest#0" />
-            <element signature="docComment;method#testComputeNeuronResult#0;class#NeuronTest#0" />
-            <element signature="method#testComputeNeuronResult#0;class#NeuronTest#0" />
+            <element signature="docComment;field#depth#0;class#NeuralNetwork#0" />
+            <element signature="docComment;field#inputVectors#0;class#NeuralNetwork#0" />
+            <element signature="method#NeuralNetwork#0;class#NeuralNetwork#0" />
+            <element signature="method#build#0;class#NeuralNetwork#0" />
+            <element signature="method#importInputVectorsFromMemory#0;class#NeuralNetwork#0" />
+            <element signature="method#importExpectedOutputVectorsFromMemory#0;class#NeuralNetwork#0" />
+            <element signature="method#propagate#0;class#NeuralNetwork#0" />
+            <element signature="method#weightCount#0;class#NeuralNetwork#0" />
           </folding>
         </state>
       </provider>
