@@ -30,7 +30,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             NeuralNetwork neuralNetwork = new NeuralNetwork(new int[] {1,4}, "src/inputVectors.txt", "src/expectedOutputVectors.txt");
-            neuralNetwork.runAndLearn(10,0.1);
+            neuralNetwork.runAndLearn(10,1);
         } catch (Exception e) {
             System.out.println("Exception at main(String[])");
             e.printStackTrace();
@@ -77,7 +77,6 @@ class NeuralNetwork {
         expectedOutputVectors = importExpectedOutputVectorsFromMemory(opSource);
         build(respectiveColumnDimensionalities);
     }
-
     /**
      * Build Neural Network Method:
      * @param respectiveLayerColumnDimensionalities
@@ -107,7 +106,6 @@ class NeuralNetwork {
         inputLayer.setColumnDimensionality(inputVectors.get(0).length);
         pointer.setPrevLayer(inputLayer);
     }
-
     /**
      * Import Input Vectors from Memory Method:
      * @param sourceFile
@@ -135,20 +133,8 @@ class NeuralNetwork {
         for (double[] vector : inputVectors) {
             if (vector.length != length) throw new IOException();
         }
-
-        //        int j = 0;
-//        for (double[] inputVector : inputVectors) {
-//            System.out.println("Input Vector "+j+": ");
-//            j++;
-//            for (double elt : inputVector) {
-//                System.out.println(elt);
-//            }
-//        }
-//        System.out.println("Input Vectors Size: "+inputVectors.size());
-
         return inputVectors;
     }
-
     /**
      * Import Expected Output Vectors from Memory Method:
      * @param sourceFile
@@ -198,29 +184,13 @@ class NeuralNetwork {
      * and adds the result to the classificationVectors list.
      */
     private void propagate() throws InvalidDotProductException {
-        double[] destination = new double[respectiveColumnDimensionalities[0]];
         double[] result = layers[0].getOutputVector();
+        double[] destination = new double[respectiveColumnDimensionalities[0]];
         for (int i=0; i<respectiveColumnDimensionalities[0]; i++) destination[i] = result[i];
         classificationVectors.add(destination);
     }
 
-    /**
-     * Run Method:
-     * @throws InvalidDotProductException If the Test Method (a method called from within this) throws it.
-     *
-     * For each vector in the inputVectors list, InputLayer is modified to output the selected vector. The Test Method
-     * is then called on the (same) neural network (but with a different inputLayer output vector). The results are
-     * stored in classificationVectors. After each iteration, each vector in classificationVectors is subtracted from
-     * the corresponding vector (at the same index) in the expectedOutputVectors list. The difference is squared and
-     * summed over the entire list.
-     */
-    private double run() throws Exception {
-        int n = weightCount();
-        classificationVectors = new LinkedList<>();
-        for (double[] inputVector : inputVectors) {
-            inputLayer.setOutputVector(inputVector);
-            propagate();
-        }
+    private double calculateError() throws Exception {
         if (classificationVectors.size() != expectedOutputVectors.size()) throw new Exception();
         double size = classificationVectors.get(0).length;
         double error = 0;
@@ -237,11 +207,37 @@ class NeuralNetwork {
         return error;
     }
 
+    /**
+     * Run Method:
+     * @throws InvalidDotProductException If the Test Method (a method called from within this) throws it.
+     *
+     * For each vector in the inputVectors list, InputLayer is modified to output the selected vector. The Test Method
+     * is then called on the (same) neural network (but with a different inputLayer output vector). The results are
+     * stored in classificationVectors. After each iteration, each vector in classificationVectors is subtracted from
+     * the corresponding vector (at the same index) in the expectedOutputVectors list. The difference is squared and
+     * summed over the entire list.
+     */
+    private double run() throws Exception {
+        classificationVectors = new LinkedList<>();
+        for (double[] inputVector : inputVectors) {
+            inputLayer.setOutputVector(inputVector);
+            propagate();
+        }
+        return calculateError();
+    }
+
+    /**
+     * Learn Method:
+     *
+     * Just a standard Optimization Algorithm.
+     * @param learningRate
+     */
     private void learn(double learningRate) {
         Neuron[] neurons = layers[0].getNeurons();
         int i = 0;
         for (Neuron neuron : neurons) {
-            neuron.setWeight(i, neuron.getWeights()[i]-learningRate);
+            neuron.setWeight(i, neuron.getWeights()[i]-10);
+            i++;
         }
     }
 
